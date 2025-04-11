@@ -1,4 +1,14 @@
-/* form.css や App.css に貼り付けてOK */
+body, html, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 
 .form-container {
   max-width: 400px;
