@@ -4,7 +4,7 @@ import ExpenseForm from './components/ExpenseForm'
 function App() {
   return (
     <div>
-      <h1>家計簿フォーム</h1>
+      <h1>MyExpense</h1>
       <ExpenseForm />
     </div>
   )
