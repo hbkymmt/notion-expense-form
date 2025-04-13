@@ -97,7 +97,6 @@ const ExpenseForm: React.FC = () => {
                 onChange={e => setNotes(e.target.value)}
                 rows={3}
             />
-            <button onClick={handleSubmit}>Add</button>
 
             <button onClick={handleSubmit} disabled={isLoading}>
                 {isLoading ? "Sending..." : "Add"}
