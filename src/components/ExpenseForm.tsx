@@ -9,6 +9,7 @@ const ExpenseForm: React.FC = () => {
     const [date, setDate] = useState("");
     const [method, setMethod] = useState("");
     const [notes, setNotes] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     // 日付の初期化
     useEffect(() => {
@@ -23,6 +24,8 @@ const ExpenseForm: React.FC = () => {
             alert("Fill in the all blank!");
             return;
         }
+
+        setIsLoading(true);
     
         try {
             // バックエンドのエンドポイントに対して POST リクエストを送る
@@ -49,8 +52,8 @@ const ExpenseForm: React.FC = () => {
                 setAmount('');
                 setItem('');
                 setCategory('');
-                setDate('');
-                setMethod('');
+                // setDate('');
+                // setMethod('');
                 setNotes('');
             } else {
                 // サーバーからのレスポンスはあるが、エラー（400台など）の場合
@@ -60,6 +63,8 @@ const ExpenseForm: React.FC = () => {
             // 通信自体が失敗した場合（ネットワーク不通、サーバーが落ちているなど）
             alert("Internet connection has failed.");
             console.error(error); // コンソールに詳細なエラーを出力（デバッグ用）
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -93,6 +98,10 @@ const ExpenseForm: React.FC = () => {
                 rows={3}
             />
             <button onClick={handleSubmit}>Add</button>
+
+            <button onClick={handleSubmit} disabled={isLoading}>
+                {isLoading ? "Sending..." : "Add"}
+            </button>
         </div>
     );
 };
