@@ -58,3 +58,24 @@ body, html, #root {
   background-color: #999;
   cursor: not-allowed;
 }
+
+/* PC用のレイアウト：画面が768px以上の時に適用 */
+@media screen and (min-width: 768px) {
+  .form-container {
+    max-width: 800px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-grid textarea {
+    grid-column: span 2;
+  }
+
+  .form-grid button {
+    grid-column: span 2;
+  }
+}
