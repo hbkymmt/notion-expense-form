@@ -54,8 +54,9 @@ body, html, #root {
   background-color: #0056b3;
 }
 
+/* 送信中ボタンの見た目を薄くする */
 .form-container button:disabled {
-  background-color: #999;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 

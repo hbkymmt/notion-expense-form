@@ -9,6 +9,8 @@ const ExpenseForm: React.FC = () => {
     const [date, setDate] = useState("");
     const [method, setMethod] = useState("");
     const [notes, setNotes] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false); // 送信中フラグ
+
 
     useEffect(() => {
         const today = new Date();
@@ -21,6 +23,8 @@ const ExpenseForm: React.FC = () => {
             alert("Fill in the all blank!");
             return;
         }
+
+        setIsSubmitting(true); // 送信開始
 
         try {
             const response = await fetch(`${API_URL}/add-expense`, {
@@ -52,6 +56,8 @@ const ExpenseForm: React.FC = () => {
         } catch (error) {
             alert("Internet connection has failed.");
             console.error(error);
+        } finally {
+            setIsSubmitting(false); // 送信完了
         }
     };
 
@@ -99,7 +105,9 @@ const ExpenseForm: React.FC = () => {
                     onChange={e => setNotes(e.target.value)}
                     rows={3}
                 />
-                <button onClick={handleSubmit}>Add</button>
+                <button onClick={handleSubmit} disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Add now"}
+                </button>
             </div>
         </div>
     );
